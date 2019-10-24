@@ -20,10 +20,6 @@ export class Tab1Page {
     centeredSlides: true,
     spaceBetween: 10,
     grabCursor: true,
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'custom',
-    },
     autoplay: {
       delay: 1500,
     },
@@ -40,6 +36,12 @@ export class Tab1Page {
     }else{
       item.nombrelike --;
     }
+  }
+
+
+// Partager un article
+  public Share(item){
+
   }
 
   ngOnInit(){

@@ -7,33 +7,49 @@
 </ion-header>
 
 <ion-content>
-    
+
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let item of myhome" 
-      size-lg="2" size-md="3" size-sm="4" size-xl="3" size-xs="6">
-        <ion-card class="iocard">
+      <ion-col *ngFor="let item of myhome; let cmpt = index" 
+                size-lg="3" size-md="4" size-sm="5" size-xl="3"
+        size-xs="6">
+        <div class="iocard">
 
-          <p class="card_label text-center">
-            {{item.product.nomprd}}
-          </p>
-          <ion-slides [options]="sliderOpts" pager=true>
-            <ion-slide *ngFor="let img of item.images">     
-              <img src="{{img}}" (click)="openImage(img)">
+          <ion-item [routerLink]="['/article-details/', cmpt]" routerDirection="forward">
+            <ion-label class="card_label text-center">{{item.product.nomprd}}</ion-label>
+          </ion-item>
+
+          <ion-slides [options]="sliderOpts" pager=true 
+                      [routerLink]="['/article-details/', cmpt]" routerDirection="forward">
+            <ion-slide *ngFor="let img of item.images">
+              <img src="{{img}}">
             </ion-slide>
           </ion-slides>
+ 
           <div>
-            <ion-chip color="light" outline=true  style="float: left;" >
-              <ion-icon name="share"></ion-icon> 
+            <ion-chip color="light" outline=true style="float: left;margin: 0%;"
+                      [routerLink]="['/article-details/', cmpt]" routerDirection="forward">
+              <ion-icon name="basket"></ion-icon>
             </ion-chip>
-            <ion-chip color="light" outline=true  style="float: right;" (click)="Like(item)">
-              <ion-icon name="heart" color="danger" *ngIf="item.like==true" ></ion-icon>
-              <ion-icon name="heart-empty" *ngIf="item.like==false" ></ion-icon>
-              <ion-label>{{item.nombrelike}}</ion-label>
+            <ion-chip color="light" outline=true style="float: right;margin: 0%;" (click)="Like(item)">
+              <ion-icon name="heart" color="danger" *ngIf="item.like==true"></ion-icon>
+              <ion-icon name="heart-empty" *ngIf="item.like==false"></ion-icon>
+              <ion-label class="infos">{{item.nombrelike}}</ion-label>
             </ion-chip>
+            <ion-chip color="light" outline=true style="float: right;margin: 0%;" (click)="Share(item)">
+              <ion-icon name="share"></ion-icon>
+            </ion-chip>
+          </div> 
+          <div>
+          <ion-label *ngIf="item.characteristics[0] != null"
+                      [routerLink]="['/article-details/', cmpt]" routerDirection="forward">
+            <ion-chip color="light" outline=true style="float: left;margin: 0%;">
+              <ion-label class="infos">{{item.characteristics[0].prixchar}}</ion-label>
+            </ion-chip>
+          </ion-label>
+        </div>
 
-          </div>
-        </ion-card>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
