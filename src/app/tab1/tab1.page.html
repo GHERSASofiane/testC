@@ -10,28 +10,28 @@
     
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let item of mystorage" size-lg="2" size-md="3" size-sm="4" size-xl="3" size-xs="6">
-        <ion-card class="xx"  style="padding: 0%">
+      <ion-col *ngFor="let item of myhome" 
+      size-lg="2" size-md="3" size-sm="4" size-xl="3" size-xs="6">
+        <ion-card class="iocard">
 
-          <ion-slides [options]="sliderOpts" >
-            <ion-slide *ngFor="let img of [item.prdstg.pht1PRD, item.prdstg.pht2PRD,
-                                            item.prdstg.pht3PRD, item.prdstg.pht4PRD]">
-                                         
-              <img src="{{img}}" class="yy" *ngIf="img!=null" (click)="openImage(img)">
+          <p class="card_label text-center">
+            {{item.product.nomprd}}
+          </p>
+          <ion-slides [options]="sliderOpts" pager=true>
+            <ion-slide *ngFor="let img of item.images">     
+              <img src="{{img}}" (click)="openImage(img)">
             </ion-slide>
           </ion-slides>
           <div>
-            <ion-label class="zz">
-              {{item.prdstg.nomprd}}
-            </ion-label>
-            <ion-chip color="light" outline=true  style="float: right;">
-              <ion-icon name="heart" color="danger" *ngIf="item.likestg.indexOf(1)>=0" (click)="Like(item.idstg)">
-              </ion-icon>
-
-              <ion-icon name="heart-empty" *ngIf="item.likestg.indexOf(1)<0" (click)="Like(item.idstg)"></ion-icon>
-
-              <ion-label>{{item.likestg.length}}</ion-label>
+            <ion-chip color="light" outline=true  style="float: left;" >
+              <ion-icon name="share"></ion-icon> 
             </ion-chip>
+            <ion-chip color="light" outline=true  style="float: right;" (click)="Like(item)">
+              <ion-icon name="heart" color="danger" *ngIf="item.like==true" ></ion-icon>
+              <ion-icon name="heart-empty" *ngIf="item.like==false" ></ion-icon>
+              <ion-label>{{item.nombrelike}}</ion-label>
+            </ion-chip>
+
           </div>
         </ion-card>
       </ion-col>
