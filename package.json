@@ -2,7 +2,7 @@
   "name": "GHERSA",
   "version": "0.0.1",
   "engines": {
-    "npm": "6.12.0"
+     "node": "12.13.0"
   },
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
